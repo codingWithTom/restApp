@@ -1,0 +1,3 @@
+To run the restaurant API, just go to the folder RestaurantAPI and run "npm start" from Terminal.
+
+If you don't have NodeJS installed on your machine please use the following link https://nodejs.org/en/download/package-manager/
