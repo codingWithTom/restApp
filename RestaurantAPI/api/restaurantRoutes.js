@@ -4,4 +4,7 @@ module.exports = function(app) {
 
   app.route('/restaurants')
     .get(restaurants.restaurants_all)
+  
+  app.route('/restaurants/:categoryID/:restaurantID')
+    .post(restaurants.add_rating)
 };

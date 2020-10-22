@@ -1,142 +1,58 @@
 'use strict';
+const model = require('./restaurantModel');
+
+var categories = [
+  new model.Category("1", "Dinning", "sunset.fill", [
+    new model.Restaurant("M1", "Island Grill", "restaurant1", "The best grill in town", []),
+    new model.Restaurant("M2", "Flavoroso", "restaurant2", "Flavors like you have never tested before", []),
+    new model.Restaurant("M3", "Sweet Escape", "restaurant3", "Get away from your sour life", []),
+    new model.Restaurant("M4", "Grandma’s Sweets", "restaurant4", "Makes you remember home", []),
+    new model.Restaurant("M5", "Grassfed Grill", "restaurant5", "Top quality steaks", [])
+  ]),
+  new model.Category("2", "Lunch", "sunrise.fill", [
+    new model.Restaurant("L1", "Freddy’s Stove", "restaurant1", "Food like you've never seen before", []),
+    new model.Restaurant("L2", "Green Curry", "restaurant2", "Top shelf curry", []),
+    new model.Restaurant("L3", "Pancake World", "restaurant3", "Best way to start your day", []),
+    new model.Restaurant("L4", "Mediterra Seafood", "restaurant4", "Unmatched sea food", []),
+    new model.Restaurant("L5", "Greenanic Smoothies", "restaurant5", "Up your day with these veggie-rich smoothies", []),
+  ]),
+  new model.Category("3", "Desserts", "tuningfork", [
+    new model.Restaurant("N1", "Freddy’s Stove", "restaurant1", "Food like you've never seen before", []),
+    new model.Restaurant("N2", "Green Curry", "restaurant2", "Top shelf curry", []),
+  ]),
+  new model.Category("4", "Brunch", "seal.fill", [
+    new model.Restaurant("O1", "Island Grill", "restaurant1", "The best grill in town", []),
+    new model.Restaurant("O2", "Flavoroso", "restaurant2", "Flavors like you have never tested before", []),
+    new model.Restaurant("O3", "Sweet Escape", "restaurant3", "Get away from your sour life", []),
+    new model.Restaurant("O4", "Grassfed Grill", "restaurant5", "Top quality steaks", []),
+  ])
+];
+
+var categoryID = "";
+var restaurantID = "";
+var ratingID = 0;1
 
 exports.restaurants_all = function(req, res) {
-  res.json([
-    { 
-    name: "Dinning",
-    iconImageName: "sunset.fill",
-    restaurants: [
-      {
-        restaurantID: "M1",
-        name: "Island Grill",
-        imageName: "restaurant1",
-        description: "The best grill in town",
-        ratings: []
-      },
-      {
-        restaurantID: "M2",
-        name: "Flavoroso",
-        imageName: "restaurant2",
-        description: "Flavors like you have never tested before",
-        ratings: []
-      },
-      {
-        restaurantID: "M3",
-        name: "Sweet Escape",
-        imageName: "restaurant3",
-        description: "Get away from your sour life",
-        ratings: []
-      },
-      {
-        restaurantID: "M4",
-        name: "Grandma’s Sweets",
-        imageName: "restaurant4",
-        description: "Makes you remember home",
-        ratings: []
-      },
-      {
-        restaurantID: "M5",
-        name: "Grassfed Grill",
-        imageName: "restaurant5",
-        description: "Top quality steaks",
-        ratings: []
-      }
-    ]
-  },
-  { 
-    name: "Lunch",
-    iconImageName: "sunrise.fill",
-    restaurants: [
-      {
-        restaurantID: "L1",
-        name: "Freddy’s Stove",
-        imageName: "restaurant1",
-        description: "Food like you've never seen before",
-        ratings: []
-      },
-      {
-        restaurantID: "L2",
-        name: "Green Curry",
-        imageName: "restaurant2",
-        description: "Top shelf curry",
-        ratings: []
-      },
-      {
-        restaurantID: "L3",
-        name: "Pancake World",
-        imageName: "restaurant3",
-        description: "Best way to start your day",
-        ratings: []
-      },
-      {
-        restaurantID: "L4",
-        name: "Mediterra Seafood",
-        imageName: "restaurant4",
-        description: "Unmatched sea food",
-        ratings: []
-      },
-      {
-        restaurantID: "L5",
-        name: "Greenanic Smoothies",
-        imageName: "restaurant5",
-        description: "Up your day with these veggie-rich smoothies",
-        ratings: []
-      }
-    ]
-  },
-  { 
-    name: "Desserts",
-    iconImageName: "tuningfork",
-    restaurants: [
-      {
-        restaurantID: "N1",
-        name: "Freddy’s Stove",
-        imageName: "restaurant1",
-        description: "Food like you've never seen before",
-        ratings: []
-      },
-      {
-        restaurantID: "N2",
-        name: "Green Curry",
-        imageName: "restaurant2",
-        description: "Top shelf curry",
-        ratings: []
-      },
-    ]
-  },
-  { 
-    name: "Brunch",
-    iconImageName: "seal.fill",
-    restaurants: [
-      {
-        restaurantID: "O1",
-        name: "Island Grill",
-        imageName: "restaurant1",
-        description: "The best grill in town",
-        ratings: []
-      },
-      {
-        restaurantID: "O2",
-        name: "Flavoroso",
-        imageName: "restaurant2",
-        description: "Flavors like you have never tested before",
-        ratings: []
-      },
-      {
-        restaurantID: "O3",
-        name: "Sweet Escape",
-        imageName: "restaurant3",
-        description: "Get away from your sour life",
-        ratings: []
-      },
-      {
-        restaurantID: "O4",
-        name: "Grassfed Grill",
-        imageName: "restaurant5",
-        description: "Top quality steaks",
-        ratings: []
-      }
-    ]
-  }
-]);
+  res.json(categories);
 };
+
+exports.add_rating = function(req, res) {
+  restaurantID = req.params.restaurantID;
+  categoryID = req.params.categoryID;
+  const categoryIndex = categories.findIndex(findCateogryIndex); 
+  const resturantIndex = categories[categoryIndex].restaurants.findIndex(findRestaurantIndex);
+  var object = req.body;
+  object.ratingID = "" + ratingID
+  ratingID += 1;
+  const rating = JSON.parse(JSON.stringify(req.body));
+  categories[categoryIndex].restaurants[resturantIndex].ratings.push(rating);
+  res.json(categories);
+};
+
+function findCateogryIndex(value, index, array) {
+ return value.categoryID == categoryID;
+}
+
+function findRestaurantIndex(value, index, array) {
+  return value.restaurantID == restaurantID;
+ }

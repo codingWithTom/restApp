@@ -8,6 +8,7 @@
 import Foundation
 
 struct Rating: Decodable {
-  let score: Int
+  let ratingID: String
+  let score: String
   let comment: String
 }
