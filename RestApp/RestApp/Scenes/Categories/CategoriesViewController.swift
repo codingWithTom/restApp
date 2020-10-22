@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import Combine
 
 enum Section: Hashable {
   case first
 }
 
+struct RowItem {
+  let item: Item
+  let children: [RowItem]
+}
+
 enum Item: Hashable {
   case category(CategoryViewModel)
   case restaurant(RestaurantViewModel)
+  case rating(RatingViewModel)
 }
 
 struct CategoryViewModel: Hashable {
@@ -26,19 +33,31 @@ struct RestaurantViewModel: Hashable {
   let imageName: String
   let name: String
   let description: String
+  let hasRatings: Bool
+}
+
+struct RatingViewModel: Hashable {
+  let id: String
+  let comment: String
+  let score: Int
 }
 
 final class CategoriesViewController: UIViewController {
   
   @IBOutlet private weak var collectionView: UICollectionView!
   private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+  private let viewModel = CategoriesViewModel()
+  private var rowItemsCancellable: AnyCancellable?
+  private var idOfRestaurantBeingRated: String?
+  private var rateView: UIView?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     configureCollectionView()
-    RestaurantServiceAdapter.shared.getRestaurants { [weak self] categories in
+    viewModel.handleSceneLoaded()
+    rowItemsCancellable = viewModel.rowItemsPublisher.sink { [weak self] items in
       DispatchQueue.main.async {
-        self?.updateUI(with: categories)
+        self?.updateUI(with: items)
       }
     }
   }
@@ -59,9 +78,9 @@ private extension CategoriesViewController {
   }
   
   func getSwipeConfiguration(for item: Item) -> UISwipeActionsConfiguration? {
-    guard case let .restaurant(viewModel) = item else { return nil }
-    let rateAction = UIContextualAction(style: .normal, title: "Rate") { _, _, completion in
-      print("Rated restaurant \(viewModel.name)")
+    guard case let .restaurant(restaurantViewModel) = item else { return nil }
+    let rateAction = UIContextualAction(style: .normal, title: "Rate") { [weak self] _, _, completion in
+      self?.presentRateView(for: restaurantViewModel)
       completion(true)
     }
     rateAction.backgroundColor = .systemBlue
@@ -80,6 +99,11 @@ private extension CategoriesViewController {
     
     let restauranteCellRegistration = UICollectionView.CellRegistration<RestaurantCollectionViewCell, RestaurantViewModel> { cell, _, restaurantViewModel in
       cell.update(with: restaurantViewModel)
+      cell.accessories = restaurantViewModel.hasRatings ? [.outlineDisclosure()] : []
+    }
+    
+    let ratingCellRegistration = UICollectionView.CellRegistration<RateCollectionViewCell, RatingViewModel> { cell, _, ratingViewModel in
+      cell.update(with: ratingViewModel)
     }
     
     dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell? in
@@ -88,29 +112,45 @@ private extension CategoriesViewController {
         return collectionView.dequeueConfiguredReusableCell(using: categoryCellRegistration, for: indexPath, item: categoryViewModel)
       case .restaurant(let restaurantViewModel):
         return collectionView.dequeueConfiguredReusableCell(using: restauranteCellRegistration, for: indexPath, item: restaurantViewModel)
+      case .rating(let ratingViewModel):
+        return collectionView.dequeueConfiguredReusableCell(using: ratingCellRegistration, for: indexPath, item: ratingViewModel)
       }
     }
   }
   
-  func updateUI(with categories: [Category]) {
-    var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
-    categories.forEach { category in
-      let categoryItem = Item.category(category.viewModel)
-      snapshot.append([categoryItem])
-      snapshot.append(category.restaurants.map { Item.restaurant($0.viewModel) }, to: categoryItem)
+  func presentRateView(for restaurantViewModel: RestaurantViewModel) {
+    DispatchQueue.main.async {
+      let rateWidth = self.view.bounds.width * 0.8
+      let rateHeight = rateWidth * 0.6
+      let center = self.view.center
+      let rateView = RateView(frame: CGRect(x: center.x - rateWidth / 2, y: center.y - rateHeight / 2, width: rateWidth, height: rateHeight))
+      rateView.delegate = self
+      self.view.addSubview(rateView)
+      self.rateView = rateView
+      self.idOfRestaurantBeingRated = restaurantViewModel.id
     }
+  }
+  
+  func updateUI(with items: [RowItem]) {
+    var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
+    items.forEach { update(snapshot: &snapshot, with: $0, parent: nil) }
     dataSource.apply(snapshot, to: .first)
   }
-}
-
-private extension Category {
-  var viewModel: CategoryViewModel {
-    return CategoryViewModel(name: self.name, systemIconName: self.iconImageName)
+  
+  func update(snapshot: inout NSDiffableDataSourceSectionSnapshot<Item>, with rowItem: RowItem, parent: Item?) {
+    snapshot.append([rowItem.item], to: parent)
+    rowItem.children.forEach { update(snapshot: &snapshot, with: $0, parent: rowItem.item) }
   }
 }
 
-private extension Restaurant {
-  var viewModel: RestaurantViewModel {
-    return RestaurantViewModel(id: restaurantID, imageName: imageName, name: name, description: description)
+extension CategoriesViewController: RateViewDelegate {
+  func didTapCancel() {
+    rateView?.removeFromSuperview()
+  }
+  
+  func didRate(score: Int, comment: String) {
+    rateView?.removeFromSuperview()
+    guard let restaurantID = idOfRestaurantBeingRated else { return }
+    viewModel.rateRestaurant(restaurantID: restaurantID, score: score, comment: comment)
   }
 }

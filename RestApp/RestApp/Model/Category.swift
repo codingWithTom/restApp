@@ -8,6 +8,7 @@
 import Foundation
 
 struct Category: Decodable {
+  let categoryID: String
   let name: String
   let iconImageName: String
   let restaurants: [Restaurant]
