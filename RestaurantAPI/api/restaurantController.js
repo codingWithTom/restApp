@@ -30,7 +30,7 @@ var categories = [
 
 var categoryID = "";
 var restaurantID = "";
-var ratingID = 0;1
+var ratingID = 0;
 
 exports.restaurants_all = function(req, res) {
   res.json(categories);
