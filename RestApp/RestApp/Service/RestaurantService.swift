@@ -12,6 +12,7 @@ protocol RestaurantService {
   var categoriesPublisher: AnyPublisher<[Category], Never> { get }
   func getRestaurants()
   func rateRestaurant(restaurantID: String, comment: String, score: Int)
+  func getRestaurant(restaurantID: String) -> Restaurant?
 }
 
 final class RestaurantServiceAdapter: RestaurantService {
@@ -26,9 +27,10 @@ final class RestaurantServiceAdapter: RestaurantService {
     return currentSubjectPublisher.eraseToAnyPublisher()
   }
   private init() {}
+  private let domain = "localhost:3000"
   
   func getRestaurants() {
-    guard let url = URL(string: "http://localhost:3000/restaurants") else { return }
+    guard let url = URL(string: "http://\(domain)/restaurants") else { return }
     let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {[weak self] data, _, _ in
       self?.updateCategories(with: data)
     }
@@ -40,7 +42,7 @@ final class RestaurantServiceAdapter: RestaurantService {
     let rateBody = ["score": "\(score)", "comment": comment]
     guard
       let categoryID = category?.categoryID,
-      let url = URL(string: "http://localhost:3000/restaurants/\(categoryID)/\(restaurantID)"),
+      let url = URL(string: "http://\(domain)/restaurants/\(categoryID)/\(restaurantID)"),
       let rateData = try? JSONEncoder().encode(rateBody)
     else { return }
     var request = URLRequest(url: url)
@@ -51,6 +53,15 @@ final class RestaurantServiceAdapter: RestaurantService {
       self?.updateCategories(with: data)
     }
     task.resume()
+  }
+  
+  func getRestaurant(restaurantID: String) -> Restaurant? {
+    for category in categories {
+      if let restaurant = category.restaurants.first(where: { $0.restaurantID == restaurantID }) {
+        return restaurant
+      }
+    }
+    return nil
   }
 }
 

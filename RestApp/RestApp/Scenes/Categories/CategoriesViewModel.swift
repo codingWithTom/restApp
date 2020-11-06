@@ -11,6 +11,7 @@ import Combine
 final class CategoriesViewModel {
   struct Dependencies {
     var restaurantService: RestaurantService = RestaurantServiceAdapter.shared
+    var getShareableInfo: GetShareableInfo = GetShareableInfoAdapter()
   }
   private let dependencies: Dependencies
   
@@ -37,22 +38,13 @@ final class CategoriesViewModel {
   func rateRestaurant(restaurantID: String, score: Int, comment: String) {
     dependencies.restaurantService.rateRestaurant(restaurantID: restaurantID, comment: comment, score: score)
   }
-}
-
-private extension Category {
-  var viewModel: CategoryViewModel {
-    return CategoryViewModel(name: self.name, systemIconName: self.iconImageName)
+  
+  func getRestaurant(for restaurantID: String) -> Restaurant? {
+    return dependencies.restaurantService.getRestaurant(restaurantID: restaurantID)
   }
-}
-
-private extension Restaurant {
-  var viewModel: RestaurantViewModel {
-    return RestaurantViewModel(id: restaurantID, imageName: imageName, name: name, description: description, hasRatings: !ratings.isEmpty)
-  }
-}
-
-private extension Rating {
-  var viewModel: RatingViewModel {
-    return RatingViewModel(id: ratingID, comment: comment, score: Int(score) ?? 0)
+  
+  func getShareableItems(for restaurantID: String) -> [Any] {
+    guard let restaurant = dependencies.restaurantService.getRestaurant(restaurantID: restaurantID) else { return [] }
+    return dependencies.getShareableInfo.execute(for: restaurant)
   }
 }
