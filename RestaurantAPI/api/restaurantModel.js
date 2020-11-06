@@ -22,7 +22,7 @@ class Restaurant {
 class Rating {
   constructor(ratingID, score, comment) {
     this.ratingID = ratingID;
-    this.score =  parseInt(score, 10);
+    this.score =  score;
     this.comment = comment;
   }
 }

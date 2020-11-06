@@ -74,6 +74,7 @@ private extension CategoriesViewController {
       return NSCollectionLayoutSection.list(using: listConfiguration, layoutEnvironment: environment)
     }
     collectionView.collectionViewLayout = layout
+    collectionView.delegate = self
     configureDataSource()
   }
   
@@ -141,6 +142,20 @@ private extension CategoriesViewController {
     snapshot.append([rowItem.item], to: parent)
     rowItem.children.forEach { update(snapshot: &snapshot, with: $0, parent: rowItem.item) }
   }
+  
+  func getShareableAction(for restaurant: RestaurantViewModel) -> UIAction {
+    return UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), identifier: nil) { [weak self] _ in
+      let items = self?.viewModel.getShareableItems(for: restaurant.id) ?? []
+      self?.present(UIActivityViewController(activityItems: items, applicationActivities: nil), animated: true, completion: nil)
+    }
+  }
+  
+  func getRateAction(for restaurant: RestaurantViewModel) -> UIAction {
+    return UIAction(title: "Rate", image: UIImage(systemName: "star.fill"), identifier: nil) { [weak self] _ in
+      self?.idOfRestaurantBeingRated = restaurant.id
+      self?.presentRateView(for: restaurant)
+    }
+  }
 }
 
 extension CategoriesViewController: RateViewDelegate {
@@ -152,5 +167,36 @@ extension CategoriesViewController: RateViewDelegate {
     rateView?.removeFromSuperview()
     guard let restaurantID = idOfRestaurantBeingRated else { return }
     viewModel.rateRestaurant(restaurantID: restaurantID, score: score, comment: comment)
+  }
+}
+
+extension CategoriesViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard
+      case let .restaurant(restaurantViewModel) = dataSource?.itemIdentifier(for: indexPath),
+      let restaurant = viewModel.getRestaurant(for: restaurantViewModel.id),
+      let restaurantController = RestaurantDetailViewController.getController(for: restaurant)
+    else { return }
+    navigationController?.show(restaurantController, sender: self)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    guard case let .restaurant(restaurantViewModel) = dataSource?.itemIdentifier(for: indexPath) else { return nil }
+    return UIContextMenuConfiguration(
+      identifier: nil,
+      previewProvider: { [weak self] in
+        guard
+          let self = self,
+          let restaurant = self.viewModel.getRestaurant(for: restaurantViewModel.id),
+          let controller = RestaurantDetailViewController.getController(for: restaurant)
+        else { return nil }
+        return controller
+      }, actionProvider: { _ in
+        let items: [UIMenuElement] = [
+          self.getShareableAction(for: restaurantViewModel),
+          self.getRateAction(for: restaurantViewModel)
+        ]
+        return UIMenu(title: restaurantViewModel.name, children: items)
+      })
   }
 }

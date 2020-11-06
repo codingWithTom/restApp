@@ -22,6 +22,10 @@
 		40CEE01D25240F9200B9566F /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEE01C25240F9200B9566F /* Rating.swift */; };
 		40CEE02125240FD100B9566F /* RestaurantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEE02025240FD100B9566F /* RestaurantService.swift */; };
 		40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEE02B2524130300B9566F /* CategoriesViewController.swift */; };
+		40DA6149255393B40052AD1D /* ScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA6148255393B40052AD1D /* ScenePresenter.swift */; };
+		40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */; };
+		40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */; };
+		40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA6153255398550052AD1D /* GetShareableInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		40CEE01C25240F9200B9566F /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		40CEE02025240FD100B9566F /* RestaurantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantService.swift; sourceTree = "<group>"; };
 		40CEE02B2524130300B9566F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		40DA6148255393B40052AD1D /* ScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenter.swift; sourceTree = "<group>"; };
+		40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewModel.swift; sourceTree = "<group>"; };
+		40DA6153255398550052AD1D /* GetShareableInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShareableInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +91,10 @@
 		40CEDFFE25240EF700B9566F /* RestApp */ = {
 			isa = PBXGroup;
 			children = (
+				40DA61472553939E0052AD1D /* Presenter */,
 				40CEE029252412E600B9566F /* Scenes */,
 				40CEE01F25240FC200B9566F /* Service */,
+				40DA6152255398470052AD1D /* UseCase */,
 				40CEE01425240F5D00B9566F /* Model */,
 				40CEDFFF25240EF700B9566F /* AppDelegate.swift */,
 				40CEE00125240EF700B9566F /* SceneDelegate.swift */,
@@ -117,6 +127,7 @@
 		40CEE029252412E600B9566F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				40DA614B255393D30052AD1D /* RestaurantDetail */,
 				40638A6A25410C2800DC55F8 /* Rate */,
 				40CEE02A252412F000B9566F /* Categories */,
 			);
@@ -132,6 +143,31 @@
 				40638A6F25410DDF00DC55F8 /* RateCollectionViewCell.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		40DA61472553939E0052AD1D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				40DA6148255393B40052AD1D /* ScenePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		40DA614B255393D30052AD1D /* RestaurantDetail */ = {
+			isa = PBXGroup;
+			children = (
+				40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */,
+				40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */,
+			);
+			path = RestaurantDetail;
+			sourceTree = "<group>";
+		};
+		40DA6152255398470052AD1D /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				40DA6153255398550052AD1D /* GetShareableInfo.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,13 +244,17 @@
 				403A010A252554D800C836CF /* RestaurantCollectionViewCell.swift in Sources */,
 				40638A7025410DDF00DC55F8 /* RateCollectionViewCell.swift in Sources */,
 				40CEE00025240EF700B9566F /* AppDelegate.swift in Sources */,
+				40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */,
 				40CEE00225240EF700B9566F /* SceneDelegate.swift in Sources */,
 				40CEE02125240FD100B9566F /* RestaurantService.swift in Sources */,
 				40CEE01D25240F9200B9566F /* Rating.swift in Sources */,
 				40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */,
+				40DA6149255393B40052AD1D /* ScenePresenter.swift in Sources */,
 				40638A732541115900DC55F8 /* RateView.swift in Sources */,
 				40638A682541089800DC55F8 /* CategoriesViewModel.swift in Sources */,
 				40CEE01625240F6200B9566F /* Category.swift in Sources */,
+				40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */,
+				40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */,
 				40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -381,6 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
