@@ -10,12 +10,13 @@ class Category {
 }
 
 class Restaurant {
-  constructor(restaurantID, name, imageName, description, ratings) {
+  constructor(restaurantID, name, imageName, description, ratings, images) {
     this.restaurantID = restaurantID;
     this.name = name;
     this.imageName = imageName;
     this.description = description;
     this.ratings = ratings;
+    this.images = images;
   }
 }
 
