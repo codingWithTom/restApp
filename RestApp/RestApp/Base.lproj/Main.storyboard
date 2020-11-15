@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wv6-pT-pob">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wv6-pT-pob">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -60,14 +60,35 @@
                                     <constraint firstAttribute="width" secondItem="JJV-aY-Aqs" secondAttribute="height" multiplier="16:9" id="3by-Aw-Ius"/>
                                 </constraints>
                             </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V8p-AF-hZL">
+                                <rect key="frame" x="141.5" y="312.5" width="131" height="32"/>
+                                <segments>
+                                    <segment title="Ratings"/>
+                                    <segment title="Images"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didSelectSegment:" destination="d6V-p2-Zoi" eventType="valueChanged" id="qAs-6n-UqT"/>
+                                </connections>
+                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zN-r2-0IT">
-                                <rect key="frame" x="8" y="284" width="398" height="21"/>
+                                <rect key="frame" x="8" y="284" width="398" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IbM-Ja-gR7">
+                                <rect key="frame" x="8" y="351.5" width="398" height="502.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Wx-kr-Ucc">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ecj-Cm-a7c">
-                                <rect key="frame" x="8" y="313" width="398" height="541"/>
+                                <rect key="frame" x="8" y="351.5" width="398" height="502.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1OW-ot-Nqx">
                                     <size key="itemSize" width="128" height="128"/>
@@ -81,19 +102,26 @@
                         <viewLayoutGuide key="safeArea" id="gxZ-Oo-aSW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="V8p-AF-hZL" firstAttribute="centerX" secondItem="gxZ-Oo-aSW" secondAttribute="centerX" id="5gn-0D-Fwg"/>
                             <constraint firstItem="1zN-r2-0IT" firstAttribute="top" secondItem="JJV-aY-Aqs" secondAttribute="bottom" constant="8" id="75I-u5-9Qw"/>
                             <constraint firstItem="1zN-r2-0IT" firstAttribute="leading" secondItem="gxZ-Oo-aSW" secondAttribute="leading" constant="8" id="A81-kl-9kU"/>
+                            <constraint firstItem="IbM-Ja-gR7" firstAttribute="trailing" secondItem="Ecj-Cm-a7c" secondAttribute="trailing" id="BBX-Us-3QZ"/>
+                            <constraint firstItem="V8p-AF-hZL" firstAttribute="top" secondItem="1zN-r2-0IT" secondAttribute="bottom" constant="8" id="CFr-I7-CMZ"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="Ecj-Cm-a7c" secondAttribute="trailing" constant="8" id="DSr-tA-mYq"/>
                             <constraint firstItem="JJV-aY-Aqs" firstAttribute="leading" secondItem="gxZ-Oo-aSW" secondAttribute="leading" constant="8" id="HVw-0V-YUd"/>
+                            <constraint firstItem="Ecj-Cm-a7c" firstAttribute="top" secondItem="V8p-AF-hZL" secondAttribute="bottom" constant="8" id="J4j-FM-QSy"/>
+                            <constraint firstItem="IbM-Ja-gR7" firstAttribute="leading" secondItem="Ecj-Cm-a7c" secondAttribute="leading" id="W6P-G4-ywZ"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="JJV-aY-Aqs" secondAttribute="trailing" constant="8" id="Xqw-0T-wVB"/>
+                            <constraint firstItem="IbM-Ja-gR7" firstAttribute="bottom" secondItem="Ecj-Cm-a7c" secondAttribute="bottom" id="ZCj-tN-HsR"/>
                             <constraint firstItem="JJV-aY-Aqs" firstAttribute="top" secondItem="gxZ-Oo-aSW" secondAttribute="top" constant="8" id="bAh-jI-6Op"/>
-                            <constraint firstItem="Ecj-Cm-a7c" firstAttribute="top" secondItem="1zN-r2-0IT" secondAttribute="bottom" constant="8" id="d7a-Mc-hI6"/>
+                            <constraint firstItem="IbM-Ja-gR7" firstAttribute="top" secondItem="Ecj-Cm-a7c" secondAttribute="top" id="jer-NZ-guL"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="bottom" secondItem="Ecj-Cm-a7c" secondAttribute="bottom" constant="8" id="o0N-10-fMU"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="1zN-r2-0IT" secondAttribute="trailing" constant="8" id="pcF-wR-b28"/>
                             <constraint firstItem="Ecj-Cm-a7c" firstAttribute="leading" secondItem="gxZ-Oo-aSW" secondAttribute="leading" constant="8" id="pzK-aj-Cou"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imagesCollectionView" destination="IbM-Ja-gR7" id="7pt-kp-IRZ"/>
                         <outlet property="restaurantCollectionView" destination="Ecj-Cm-a7c" id="9x0-Be-mxn"/>
                         <outlet property="restaurantDescriptionLabel" destination="1zN-r2-0IT" id="LOV-uV-Zg6"/>
                         <outlet property="restaurantImageView" destination="JJV-aY-Aqs" id="79B-UB-Z9S"/>

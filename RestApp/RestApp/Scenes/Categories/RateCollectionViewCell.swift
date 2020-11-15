@@ -35,35 +35,33 @@ class RatingCell: UICollectionViewListCell {
 
 final class RateCollectionViewCell: RatingCell {
   private var scoreView = ScoreView()
-  private var commentTextView = UITextView()
+  private var commentLabel = UILabel()
   
   override func updateConfiguration(using state: UICellConfigurationState) {
     if contentView.subviews.isEmpty { configureView() }
     guard let viewModel = state.viewModel else { return }
     scoreView.score = viewModel.score
-    commentTextView.text = viewModel.comment
+    commentLabel.text = viewModel.comment
   }
   
 }
 
 private extension RateCollectionViewCell {
   func configureView() {
-    commentTextView.isEditable = false
-    commentTextView.setContentHuggingPriority(.defaultLow, for: .vertical)
+    commentLabel.numberOfLines = 0
+    commentLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
     scoreView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-    let stackView = UIStackView(arrangedSubviews: [scoreView, commentTextView])
+    let stackView = UIStackView(arrangedSubviews: [scoreView, commentLabel])
     stackView.axis = .vertical
     stackView.alignment = .leading
     contentView.addSubview(stackView)
     stackView.translatesAutoresizingMaskIntoConstraints = false
-    commentTextView.translatesAutoresizingMaskIntoConstraints = false
+    commentLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
       stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
       stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
-      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0),
-      stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50.0),
-      commentTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8)
+      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0)
     ])
   }
 }
