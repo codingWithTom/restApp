@@ -4,6 +4,7 @@ var express = require('express'),
 
 
 app.use(express.json());
+app.use(express.static(__dirname + '/public'));
 
 var routes = require('./api/restaurantRoutes'); //importing route
 routes(app); //register the route

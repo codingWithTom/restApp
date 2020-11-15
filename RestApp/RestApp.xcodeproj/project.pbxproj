@@ -26,6 +26,8 @@
 		40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */; };
 		40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */; };
 		40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA6153255398550052AD1D /* GetShareableInfo.swift */; };
+		40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1CDAF256039A400865485 /* ImageCacheService.swift */; };
+		40E1CDB325603DBC00865485 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1CDB225603DBC00865485 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewModel.swift; sourceTree = "<group>"; };
 		40DA6153255398550052AD1D /* GetShareableInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShareableInfo.swift; sourceTree = "<group>"; };
+		40E1CDAF256039A400865485 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		40E1CDB225603DBC00865485 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				40CEE02025240FD100B9566F /* RestaurantService.swift */,
+				40E1CDAF256039A400865485 /* ImageCacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			children = (
 				40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */,
 				40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */,
+				40E1CDB225603DBC00865485 /* ImageCollectionViewCell.swift */,
 			);
 			path = RestaurantDetail;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				40CEE00025240EF700B9566F /* AppDelegate.swift in Sources */,
 				40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */,
 				40CEE00225240EF700B9566F /* SceneDelegate.swift in Sources */,
+				40E1CDB325603DBC00865485 /* ImageCollectionViewCell.swift in Sources */,
 				40CEE02125240FD100B9566F /* RestaurantService.swift in Sources */,
 				40CEE01D25240F9200B9566F /* Rating.swift in Sources */,
 				40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */,
@@ -255,6 +262,7 @@
 				40CEE01625240F6200B9566F /* Category.swift in Sources */,
 				40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */,
 				40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */,
+				40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */,
 				40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

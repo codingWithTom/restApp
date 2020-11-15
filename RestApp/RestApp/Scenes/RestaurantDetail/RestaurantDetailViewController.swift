@@ -12,14 +12,24 @@ class RestaurantDetailViewController: UIViewController {
   @IBOutlet private weak var restaurantImageView: UIImageView!
   @IBOutlet private weak var restaurantDescriptionLabel: UILabel!
   @IBOutlet private weak var restaurantCollectionView: UICollectionView!
+  @IBOutlet private weak var imagesCollectionView: UICollectionView!
   private var viewModel: RestaurantDetailViewModel?
   private var dataSource: UICollectionViewDiffableDataSource<Section, RatingViewModel>?
+  private var imageDataSource: UICollectionViewDiffableDataSource<Section, ImageViewModel>?
+  private var isShowingRatings: Bool = true {
+    didSet {
+      restaurantCollectionView.isHidden = !isShowingRatings
+      imagesCollectionView.isHidden = isShowingRatings
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
     configureCollectionView()
+    configureImagesCollectionView()
     updateDataSource()
+    updateImagesDataSource()
     addActions()
   }
   
@@ -34,6 +44,10 @@ class RestaurantDetailViewController: UIViewController {
     else { return nil }
     controller.configure(with: restaurant)
     return controller
+  }
+  
+  @IBAction private func didSelectSegment(_ sender: UISegmentedControl) {
+    isShowingRatings = sender.selectedSegmentIndex == 0
   }
 }
 
@@ -64,10 +78,41 @@ private extension RestaurantDetailViewController {
     }
   }
   
+  func configureImagesCollectionView() {
+    let layout = UICollectionViewCompositionalLayout { section, environment in
+      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.49), heightDimension: .fractionalHeight(1.0))
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+      group.interItemSpacing = .flexible(0)
+      let section = NSCollectionLayoutSection(group: group)
+      section.interGroupSpacing = 8.0
+      return section
+    }
+    imagesCollectionView.collectionViewLayout = layout
+    configureImagesDataSource()
+  }
+  
+  func configureImagesDataSource() {
+    let imageCellRegistration = UICollectionView.CellRegistration<ImageCollectionViewCell, ImageViewModel> { cell, _, imageViewModel in
+      cell.configure(with: imageViewModel)
+    }
+    
+    imageDataSource = UICollectionViewDiffableDataSource<Section, ImageViewModel>(collectionView: imagesCollectionView) { collectionView, indexPath, imageViewModl in
+      return collectionView.dequeueConfiguredReusableCell(using: imageCellRegistration, for: indexPath, item: imageViewModl)
+    }
+  }
+  
   func updateDataSource() {
     var snapshot = NSDiffableDataSourceSectionSnapshot<RatingViewModel>()
     snapshot.append(viewModel?.getRatingItems() ?? [])
     dataSource?.apply(snapshot, to: .first)
+  }
+  
+  func updateImagesDataSource() {
+    var snapshot = NSDiffableDataSourceSectionSnapshot<ImageViewModel>()
+    snapshot.append(viewModel?.getImageItems() ?? [])
+    imageDataSource?.apply(snapshot, to: .first)
   }
   
   func addActions() {
