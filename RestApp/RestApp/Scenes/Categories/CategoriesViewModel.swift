@@ -10,13 +10,16 @@ import Combine
 
 final class CategoriesViewModel {
   struct Dependencies {
-    var restaurantService: RestaurantService = RestaurantServiceAdapter.shared
+    var getRestaurantsPublisher: GetRestaurantsPublisher = GetRestaurantsPublisherAdapter()
     var getShareableInfo: GetShareableInfo = GetShareableInfoAdapter()
+    var getRestaurant: GetRestaurant = GetRestaurantAdapter()
+    var fetchRestaurants: FetchRestaurants = FetchRestaurantsAdapter()
+    var rateRestaurant: RateRestaurant = RateRestaurantAdapter()
   }
   private let dependencies: Dependencies
   
   var rowItemsPublisher: AnyPublisher<[RowItem], Never> {
-    return dependencies.restaurantService.categoriesPublisher.map { categories in
+    return dependencies.getRestaurantsPublisher.execute().map { categories in
       categories.map { category in
         RowItem(item: Item.category(category.viewModel),
                 children: category.restaurants.map { restaurant in
@@ -32,19 +35,19 @@ final class CategoriesViewModel {
   }
   
   func handleSceneLoaded() {
-    dependencies.restaurantService.getRestaurants()
+    dependencies.fetchRestaurants.execute()
   }
   
   func rateRestaurant(restaurantID: String, score: Int, comment: String) {
-    dependencies.restaurantService.rateRestaurant(restaurantID: restaurantID, comment: comment, score: score)
+    dependencies.rateRestaurant.execute(restaurantID: restaurantID, comment: comment, score: score)
   }
   
   func getRestaurant(for restaurantID: String) -> Restaurant? {
-    return dependencies.restaurantService.getRestaurant(restaurantID: restaurantID)
+    return dependencies.getRestaurant.execute(restaurantID: restaurantID)
   }
   
   func getShareableItems(for restaurantID: String) -> [Any] {
-    guard let restaurant = dependencies.restaurantService.getRestaurant(restaurantID: restaurantID) else { return [] }
+    guard let restaurant = dependencies.getRestaurant.execute(restaurantID: restaurantID) else { return [] }
     return dependencies.getShareableInfo.execute(for: restaurant)
   }
 }

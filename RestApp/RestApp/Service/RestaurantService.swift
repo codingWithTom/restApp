@@ -10,9 +10,9 @@ import Combine
 
 protocol RestaurantService {
   var categoriesPublisher: AnyPublisher<[Category], Never> { get }
-  func getRestaurants()
-  func rateRestaurant(restaurantID: String, comment: String, score: Int)
   func getRestaurant(restaurantID: String) -> Restaurant?
+  func getCategoryID(for restaurantID: String) -> String?
+  func update(categories: [Category])
 }
 
 final class RestaurantServiceAdapter: RestaurantService {
@@ -27,33 +27,6 @@ final class RestaurantServiceAdapter: RestaurantService {
     return currentSubjectPublisher.eraseToAnyPublisher()
   }
   private init() {}
-  private let domain = "localhost:3000"
-  
-  func getRestaurants() {
-    guard let url = URL(string: "http://\(domain)/restaurants") else { return }
-    let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {[weak self] data, _, _ in
-      self?.updateCategories(with: data)
-    }
-    task.resume()
-  }
-  
-  func rateRestaurant(restaurantID: String, comment: String, score: Int) {
-    let category = categories.first { category in category.restaurants.contains { $0.restaurantID == restaurantID } }
-    let rateBody = ["score": "\(score)", "comment": comment]
-    guard
-      let categoryID = category?.categoryID,
-      let url = URL(string: "http://\(domain)/restaurants/\(categoryID)/\(restaurantID)"),
-      let rateData = try? JSONEncoder().encode(rateBody)
-    else { return }
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = rateData
-    let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, _ in
-      self?.updateCategories(with: data)
-    }
-    task.resume()
-  }
   
   func getRestaurant(restaurantID: String) -> Restaurant? {
     for category in categories {
@@ -63,15 +36,13 @@ final class RestaurantServiceAdapter: RestaurantService {
     }
     return nil
   }
-}
-
-private extension RestaurantServiceAdapter {
-  func updateCategories(with data: Data?) {
-    let jsonDecoder = JSONDecoder()
-    guard
-      let data = data,
-      let categories = try? jsonDecoder.decode([Category].self, from: data)
-    else { return }
+  
+  func getCategoryID(for restaurantID: String) -> String? {
+    let category = categories.first { category in category.restaurants.first { $0.restaurantID == restaurantID } != nil }
+    return category?.categoryID
+  }
+  
+  func update(categories: [Category]) {
     self.categories = categories
   }
 }
