@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402D9B51257071B400E381EF /* GetRestaurantsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B4C257071B400E381EF /* GetRestaurantsPublisher.swift */; };
+		402D9B52257071B400E381EF /* RetrieveRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B4D257071B400E381EF /* RetrieveRestaurants.swift */; };
+		402D9B53257071B400E381EF /* RateRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B4E257071B400E381EF /* RateRestaurant.swift */; };
+		402D9B54257071B400E381EF /* GetRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B4F257071B400E381EF /* GetRestaurant.swift */; };
+		402D9B55257071B400E381EF /* FetchRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B50257071B400E381EF /* FetchRestaurants.swift */; };
+		402D9B59257071C200E381EF /* RestaurantAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B57257071C200E381EF /* RestaurantAPI.swift */; };
+		402D9B5A257071C200E381EF /* RestaurantCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D9B58257071C200E381EF /* RestaurantCache.swift */; };
 		403A010A252554D800C836CF /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403A0109252554D800C836CF /* RestaurantCollectionViewCell.swift */; };
 		40638A682541089800DC55F8 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40638A672541089800DC55F8 /* CategoriesViewModel.swift */; };
 		40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40638A6B25410C3700DC55F8 /* ScoreView.swift */; };
@@ -31,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		402D9B4C257071B400E381EF /* GetRestaurantsPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRestaurantsPublisher.swift; sourceTree = "<group>"; };
+		402D9B4D257071B400E381EF /* RetrieveRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveRestaurants.swift; sourceTree = "<group>"; };
+		402D9B4E257071B400E381EF /* RateRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateRestaurant.swift; sourceTree = "<group>"; };
+		402D9B4F257071B400E381EF /* GetRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRestaurant.swift; sourceTree = "<group>"; };
+		402D9B50257071B400E381EF /* FetchRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRestaurants.swift; sourceTree = "<group>"; };
+		402D9B57257071C200E381EF /* RestaurantAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAPI.swift; sourceTree = "<group>"; };
+		402D9B58257071C200E381EF /* RestaurantCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCache.swift; sourceTree = "<group>"; };
 		403A0109252554D800C836CF /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		40638A672541089800DC55F8 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		40638A6B25410C3700DC55F8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
@@ -123,8 +137,10 @@
 		40CEE01F25240FC200B9566F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				40CEE02025240FD100B9566F /* RestaurantService.swift */,
 				40E1CDAF256039A400865485 /* ImageCacheService.swift */,
+				402D9B57257071C200E381EF /* RestaurantAPI.swift */,
+				402D9B58257071C200E381EF /* RestaurantCache.swift */,
+				40CEE02025240FD100B9566F /* RestaurantService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -171,7 +187,12 @@
 		40DA6152255398470052AD1D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				402D9B50257071B400E381EF /* FetchRestaurants.swift */,
+				402D9B4F257071B400E381EF /* GetRestaurant.swift */,
+				402D9B4C257071B400E381EF /* GetRestaurantsPublisher.swift */,
 				40DA6153255398550052AD1D /* GetShareableInfo.swift */,
+				402D9B4E257071B400E381EF /* RateRestaurant.swift */,
+				402D9B4D257071B400E381EF /* RetrieveRestaurants.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -252,18 +273,25 @@
 				40CEE00025240EF700B9566F /* AppDelegate.swift in Sources */,
 				40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */,
 				40CEE00225240EF700B9566F /* SceneDelegate.swift in Sources */,
+				402D9B52257071B400E381EF /* RetrieveRestaurants.swift in Sources */,
 				40E1CDB325603DBC00865485 /* ImageCollectionViewCell.swift in Sources */,
 				40CEE02125240FD100B9566F /* RestaurantService.swift in Sources */,
+				402D9B54257071B400E381EF /* GetRestaurant.swift in Sources */,
 				40CEE01D25240F9200B9566F /* Rating.swift in Sources */,
 				40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */,
+				402D9B51257071B400E381EF /* GetRestaurantsPublisher.swift in Sources */,
 				40DA6149255393B40052AD1D /* ScenePresenter.swift in Sources */,
 				40638A732541115900DC55F8 /* RateView.swift in Sources */,
+				402D9B5A257071C200E381EF /* RestaurantCache.swift in Sources */,
 				40638A682541089800DC55F8 /* CategoriesViewModel.swift in Sources */,
 				40CEE01625240F6200B9566F /* Category.swift in Sources */,
+				402D9B59257071C200E381EF /* RestaurantAPI.swift in Sources */,
 				40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */,
 				40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */,
 				40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */,
+				402D9B55257071B400E381EF /* FetchRestaurants.swift in Sources */,
 				40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */,
+				402D9B53257071B400E381EF /* RateRestaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
