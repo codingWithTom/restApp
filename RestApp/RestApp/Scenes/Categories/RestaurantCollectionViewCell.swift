@@ -37,6 +37,7 @@ final class RestaurantCollectionViewCell: RestaurantCell {
   private var restaurantImageView = UIImageView()
   private var nameLabel = UILabel()
   private var descriptionLabel = UILabel()
+  private var dishLabelsStack = UIStackView()
   
   override func updateConfiguration(using state: UICellConfigurationState) {
     guard let viewModel = state.viewModel else { return }
@@ -44,6 +45,15 @@ final class RestaurantCollectionViewCell: RestaurantCell {
     restaurantImageView.image = UIImage(named: viewModel.imageName)
     nameLabel.text = viewModel.name
     descriptionLabel.text = viewModel.description
+    dishLabelsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    viewModel.labels.forEach {
+      let label =  UILabel()
+      label.text = $0.text
+      label.backgroundColor = $0.color
+      label.textColor = .white
+      label.font = UIFont.boldSystemFont(ofSize: 12)
+      dishLabelsStack.addArrangedSubview(label)
+    }
   }
 }
 
@@ -60,7 +70,11 @@ private extension RestaurantCollectionViewCell {
     let stackView = UIStackView(arrangedSubviews: [restaurantImageView, labelStackView])
     stackView.axis = .horizontal
     stackView.spacing = 8.0
+    dishLabelsStack.axis = .horizontal
+    dishLabelsStack.spacing = 4.0
     contentView.addSubview(stackView)
+    contentView.addSubview(dishLabelsStack)
+    dishLabelsStack.translatesAutoresizingMaskIntoConstraints = false
     stackView.translatesAutoresizingMaskIntoConstraints = false
     restaurantImageView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
@@ -68,8 +82,10 @@ private extension RestaurantCollectionViewCell {
       stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
       stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
       stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0),
-      stackView.heightAnchor.constraint(equalToConstant: 100.0),
-      restaurantImageView.heightAnchor.constraint(equalTo: restaurantImageView.widthAnchor)
+      restaurantImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
+      restaurantImageView.heightAnchor.constraint(equalTo: restaurantImageView.widthAnchor),
+      dishLabelsStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      dishLabelsStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4.0)
     ])
   }
 }

@@ -50,4 +50,8 @@ final class CategoriesViewModel {
     guard let restaurant = dependencies.getRestaurant.execute(restaurantID: restaurantID) else { return [] }
     return dependencies.getShareableInfo.execute(for: restaurant)
   }
+  
+  func searchFor(text: String?, dishType: DishType) {
+    dependencies.getRestaurantsPublisher.updateCategoriesFor(text: text, dishType: dishType)
+  }
 }

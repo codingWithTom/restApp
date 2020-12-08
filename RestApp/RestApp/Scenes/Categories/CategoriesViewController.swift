@@ -34,6 +34,15 @@ struct RestaurantViewModel: Hashable {
   let name: String
   let description: String
   let hasRatings: Bool
+  let labels: [(text: String, color: UIColor)]
+  
+  static func ==(lhs: RestaurantViewModel, rhs: RestaurantViewModel) -> Bool {
+    return lhs.id == rhs.id
+  }
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
 }
 
 struct RatingViewModel: Hashable {
@@ -50,10 +59,13 @@ final class CategoriesViewController: UIViewController {
   private var rowItemsCancellable: AnyCancellable?
   private var idOfRestaurantBeingRated: String?
   private var rateView: UIView?
+  private var searchedText: String?
+  private var selectedDishtype: DishType = .none
   
   override func viewDidLoad() {
     super.viewDidLoad()
     configureCollectionView()
+    configureSearchBar()
     viewModel.handleSceneLoaded()
     rowItemsCancellable = viewModel.rowItemsPublisher.sink { [weak self] items in
       DispatchQueue.main.async {
@@ -64,6 +76,16 @@ final class CategoriesViewController: UIViewController {
 }
 
 private extension CategoriesViewController {
+  func configureSearchBar() {
+    let searchController = UISearchController()
+    searchController.searchBar.placeholder = "Search for a Restaurant"
+    searchController.searchBar.scopeButtonTitles = DishType.allCases.map { $0.rawValue }
+    searchController.searchBar.delegate = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.searchResultsUpdater = self
+    navigationItem.searchController = searchController
+  }
+  
   func configureCollectionView() {
     let layout = UICollectionViewCompositionalLayout { Section, environment in
       var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -135,6 +157,9 @@ private extension CategoriesViewController {
   func updateUI(with items: [RowItem]) {
     var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
     items.forEach { update(snapshot: &snapshot, with: $0, parent: nil) }
+    if items.count == 1 {
+      snapshot.expand([items[0].item])
+    }
     dataSource.apply(snapshot, to: .first)
   }
   
@@ -198,5 +223,19 @@ extension CategoriesViewController: UICollectionViewDelegate {
         ]
         return UIMenu(title: restaurantViewModel.name, children: items)
       })
+  }
+}
+
+extension CategoriesViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    self.searchedText = searchController.searchBar.text
+    viewModel.searchFor(text: searchedText, dishType: selectedDishtype)
+  }
+}
+
+extension CategoriesViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    self.selectedDishtype = DishType.allCases[selectedScope]
+    viewModel.searchFor(text: searchedText, dishType: selectedDishtype)
   }
 }
