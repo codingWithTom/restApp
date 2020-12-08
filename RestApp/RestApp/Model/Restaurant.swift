@@ -7,11 +7,19 @@
 
 import Foundation
 
-struct Restaurant: Decodable {
+enum DishType: String, CaseIterable, Codable {
+  case none = "None"
+  case vegetarian = "Vegetarian"
+  case vegan = "Vegan"
+  case glutenFree = "Gluten Free"
+}
+
+struct Restaurant: Codable {
   let restaurantID: String
   let name: String
   let description: String
   let imageName: String
   let ratings: [Rating]
   let images: [String]
+  let dishTypes: [DishType]
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Rating: Decodable {
+struct Rating: Codable {
   let ratingID: String
   let score: String
   let comment: String
