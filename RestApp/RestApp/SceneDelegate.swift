@@ -26,13 +26,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     if let context = connectionOptions.urlContexts.first {
       handleURLContext(context)
     }
-    guard let _ = (scene as? UIWindowScene) else { return }
+    if let windowScene = (scene as? UIWindowScene),
+       window?.traitCollection.userInterfaceIdiom == .pad,
+       let rootViewController = makeSplitViewController() {
+      let window = UIWindow(windowScene: windowScene)
+      window.rootViewController = rootViewController
+      self.window = window
+      window.makeKeyAndVisible()
+    } else {
+      (window?.rootViewController as? UISplitViewController)?.delegate = self
+    }
   }
   
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
     if let context = URLContexts.first {
       handleURLContext(context)
     }
+  }
+}
+
+extension SceneDelegate: UISplitViewControllerDelegate {
+  func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
+    guard let tabController = splitViewController.viewControllers.first as? UITabBarController else { return false }
+    var viewControllerToShow = vc
+    if let nav = vc as? UINavigationController, let topController = nav.topViewController {
+      viewControllerToShow = topController
+    }
+    tabController.selectedViewController?.show(viewControllerToShow, sender: self)
+    return true
   }
 }
 
@@ -53,6 +74,15 @@ private extension SceneDelegate {
       let restaurantVC = RestaurantDetailViewController.getController(for: restaurant)
     else { return }
     window?.rootViewController?.show(restaurantVC, sender: self)
+  }
+  
+  func makeSplitViewController() -> UIViewController? {
+    guard let categoriesController = CategoriesViewController.instantiateFromStoryboard() else { return nil }
+    let splitViewController = UISplitViewController(style: .tripleColumn)
+    splitViewController.preferredDisplayMode = .twoBesideSecondary
+    splitViewController.setViewController(SidebarViewController(), for: .primary)
+    splitViewController.setViewController(UINavigationController(rootViewController: categoriesController), for: .supplementary)
+    return splitViewController
   }
 }
 

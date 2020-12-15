@@ -53,6 +53,11 @@ struct RatingViewModel: Hashable {
 
 final class CategoriesViewController: UIViewController {
   
+  static func instantiateFromStoryboard() -> CategoriesViewController? {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    return storyboard.instantiateViewController(identifier: "CategoriesScene") as? CategoriesViewController
+  }
+  
   @IBOutlet private weak var collectionView: UICollectionView!
   private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
   private let viewModel = CategoriesViewModel()
@@ -202,7 +207,7 @@ extension CategoriesViewController: UICollectionViewDelegate {
       let restaurant = viewModel.getRestaurant(for: restaurantViewModel.id),
       let restaurantController = RestaurantDetailViewController.getController(for: restaurant)
     else { return }
-    navigationController?.show(restaurantController, sender: self)
+    showDetailViewController(restaurantController, sender: self)
   }
   
   func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
