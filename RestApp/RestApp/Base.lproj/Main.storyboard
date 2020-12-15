@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wv6-pT-pob">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gyg-fO-HiS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -11,13 +11,13 @@
         <!--Categories View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CategoriesViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesScene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CategoriesViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YMN-VE-Smk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JTv-wu-Thj">
                                     <size key="itemSize" width="128" height="128"/>
@@ -131,10 +131,11 @@
             </objects>
             <point key="canvasLocation" x="2039" y="70"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Restaurants-->
         <scene sceneID="E7U-me-SJk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wv6-pT-pob" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Restaurants" image="list.bullet.rectangle" catalog="system" id="HOW-4Q-Opk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HED-hd-EZX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -149,8 +150,68 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="69.642857142857139"/>
         </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Y9S-hS-TFZ">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" id="Gyg-fO-HiS" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="dxl-Q1-kuP" kind="relationship" relationship="masterViewController" id="RpX-pI-EU1"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LWZ-DC-5Pa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2078" y="759"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aGh-he-cnb">
+            <objects>
+                <tabBarController id="dxl-Q1-kuP" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qZ4-XS-RJg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Wv6-pT-pob" kind="relationship" relationship="viewControllers" id="V84-hK-dCj"/>
+                        <segue destination="B1g-bd-ti3" kind="relationship" relationship="viewControllers" id="VoS-MX-OxG"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="na3-fG-RMB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1071" y="381"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="o8i-JQ-fnz">
+            <objects>
+                <viewController storyboardIdentifier="ProfileScene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B1g-bd-ti3" customClass="ProfileViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YZt-Fz-rkW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMING SOON!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qno-aa-BN8">
+                                <rect key="frame" x="144.5" y="418" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f0p-wY-T7D"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qno-aa-BN8" firstAttribute="centerX" secondItem="f0p-wY-T7D" secondAttribute="centerX" id="JmO-wV-Lxm"/>
+                            <constraint firstItem="Qno-aa-BN8" firstAttribute="centerY" secondItem="f0p-wY-T7D" secondAttribute="centerY" id="tYF-cD-mXI"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle.fill" catalog="system" id="AbX-xi-kHc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifZ-4m-Fos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="759"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
