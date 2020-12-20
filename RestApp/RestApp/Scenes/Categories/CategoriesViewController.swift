@@ -102,6 +102,8 @@ private extension CategoriesViewController {
     }
     collectionView.collectionViewLayout = layout
     collectionView.delegate = self
+    collectionView.dragDelegate = self
+    collectionView.dragInteractionEnabled = true
     configureDataSource()
   }
   
@@ -242,5 +244,16 @@ extension CategoriesViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     self.selectedDishtype = DishType.allCases[selectedScope]
     viewModel.searchFor(text: searchedText, dishType: selectedDishtype)
+  }
+}
+
+extension CategoriesViewController: UICollectionViewDragDelegate {
+  func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+    guard
+      case let .restaurant(restaurantVieModel) = dataSource?.itemIdentifier(for: indexPath),
+      let restaurant = viewModel.getRestaurant(for: restaurantVieModel.id)
+    else { return [] }
+    let dragItem = UIDragItem(itemProvider: NSItemProvider(object: RestaurantDragItem(restaurant: restaurant)))
+    return [dragItem]
   }
 }

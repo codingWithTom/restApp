@@ -36,6 +36,16 @@
 		40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */; };
 		40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */; };
 		40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA6153255398550052AD1D /* GetShareableInfo.swift */; };
+		40DEB12A258BD52D00AA4FC7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB129258BD52D00AA4FC7 /* FavoritesService.swift */; };
+		40DEB12D258BD70800AA4FC7 /* GetFavoritesPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB12C258BD70800AA4FC7 /* GetFavoritesPublisher.swift */; };
+		40DEB130258BD76800AA4FC7 /* AddFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB12F258BD76800AA4FC7 /* AddFavorite.swift */; };
+		40DEB133258BD79900AA4FC7 /* RemoveFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB132258BD79900AA4FC7 /* RemoveFavorite.swift */; };
+		40DEB136258BD7E400AA4FC7 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB135258BD7E400AA4FC7 /* SidebarViewModel.swift */; };
+		40DEB139258BDC3C00AA4FC7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB138258BDC3C00AA4FC7 /* TabBarController.swift */; };
+		40DEB13C258BDC5100AA4FC7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB13B258BDC5100AA4FC7 /* TabBarViewModel.swift */; };
+		40DEB140258BDE1000AA4FC7 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB13F258BDE1000AA4FC7 /* FavoritesViewController.swift */; };
+		40DEB144258BDE2800AA4FC7 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB143258BDE2800AA4FC7 /* FavoritesViewModel.swift */; };
+		40DEB148258BE39300AA4FC7 /* RestaurantItemProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEB147258BE39300AA4FC7 /* RestaurantItemProviding.swift */; };
 		40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1CDAF256039A400865485 /* ImageCacheService.swift */; };
 		40E1CDB325603DBC00865485 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1CDB225603DBC00865485 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +83,16 @@
 		40DA614C255393E10052AD1D /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		40DA614F255393EC0052AD1D /* RestaurantDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewModel.swift; sourceTree = "<group>"; };
 		40DA6153255398550052AD1D /* GetShareableInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShareableInfo.swift; sourceTree = "<group>"; };
+		40DEB129258BD52D00AA4FC7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
+		40DEB12C258BD70800AA4FC7 /* GetFavoritesPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavoritesPublisher.swift; sourceTree = "<group>"; };
+		40DEB12F258BD76800AA4FC7 /* AddFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavorite.swift; sourceTree = "<group>"; };
+		40DEB132258BD79900AA4FC7 /* RemoveFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavorite.swift; sourceTree = "<group>"; };
+		40DEB135258BD7E400AA4FC7 /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
+		40DEB138258BDC3C00AA4FC7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		40DEB13B258BDC5100AA4FC7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		40DEB13F258BDE1000AA4FC7 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		40DEB143258BDE2800AA4FC7 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		40DEB147258BE39300AA4FC7 /* RestaurantItemProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantItemProviding.swift; sourceTree = "<group>"; };
 		40E1CDAF256039A400865485 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		40E1CDB225603DBC00865485 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				40AD2CD92586B62B006302BD /* SidebarViewController.swift */,
+				40DEB135258BD7E400AA4FC7 /* SidebarViewModel.swift */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -117,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				40AD2CDE2586B7DD006302BD /* TabBarItems.swift */,
+				40DEB138258BDC3C00AA4FC7 /* TabBarController.swift */,
+				40DEB13B258BDC5100AA4FC7 /* TabBarViewModel.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -140,6 +163,7 @@
 		40CEDFFE25240EF700B9566F /* RestApp */ = {
 			isa = PBXGroup;
 			children = (
+				40DEB146258BE38400AA4FC7 /* DragDrop */,
 				40AD2CE22586C03D006302BD /* RestApp.entitlements */,
 				40DA61472553939E0052AD1D /* Presenter */,
 				40CEE029252412E600B9566F /* Scenes */,
@@ -173,6 +197,7 @@
 				402D9B57257071C200E381EF /* RestaurantAPI.swift */,
 				402D9B58257071C200E381EF /* RestaurantCache.swift */,
 				40CEE02025240FD100B9566F /* RestaurantService.swift */,
+				40DEB129258BD52D00AA4FC7 /* FavoritesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -180,6 +205,7 @@
 		40CEE029252412E600B9566F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				40DEB13E258BDDFC00AA4FC7 /* Favorites */,
 				40AD2CDD2586B7CF006302BD /* TabBar */,
 				40DA614B255393D30052AD1D /* RestaurantDetail */,
 				40638A6A25410C2800DC55F8 /* Rate */,
@@ -228,8 +254,28 @@
 				40DA6153255398550052AD1D /* GetShareableInfo.swift */,
 				402D9B4E257071B400E381EF /* RateRestaurant.swift */,
 				402D9B4D257071B400E381EF /* RetrieveRestaurants.swift */,
+				40DEB12C258BD70800AA4FC7 /* GetFavoritesPublisher.swift */,
+				40DEB12F258BD76800AA4FC7 /* AddFavorite.swift */,
+				40DEB132258BD79900AA4FC7 /* RemoveFavorite.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		40DEB13E258BDDFC00AA4FC7 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				40DEB13F258BDE1000AA4FC7 /* FavoritesViewController.swift */,
+				40DEB143258BDE2800AA4FC7 /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		40DEB146258BE38400AA4FC7 /* DragDrop */ = {
+			isa = PBXGroup;
+			children = (
+				40DEB147258BE39300AA4FC7 /* RestaurantItemProviding.swift */,
+			);
+			path = DragDrop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,25 +348,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DEB144258BDE2800AA4FC7 /* FavoritesViewModel.swift in Sources */,
+				40DEB136258BD7E400AA4FC7 /* SidebarViewModel.swift in Sources */,
 				40CEE01A25240F7800B9566F /* Restaurant.swift in Sources */,
 				403A010A252554D800C836CF /* RestaurantCollectionViewCell.swift in Sources */,
 				40638A7025410DDF00DC55F8 /* RateCollectionViewCell.swift in Sources */,
+				40DEB12A258BD52D00AA4FC7 /* FavoritesService.swift in Sources */,
+				40DEB13C258BDC5100AA4FC7 /* TabBarViewModel.swift in Sources */,
 				40CEE00025240EF700B9566F /* AppDelegate.swift in Sources */,
 				40DA6154255398550052AD1D /* GetShareableInfo.swift in Sources */,
 				40CEE00225240EF700B9566F /* SceneDelegate.swift in Sources */,
 				402D9B52257071B400E381EF /* RetrieveRestaurants.swift in Sources */,
+				40DEB140258BDE1000AA4FC7 /* FavoritesViewController.swift in Sources */,
 				40E1CDB325603DBC00865485 /* ImageCollectionViewCell.swift in Sources */,
 				40CEE02125240FD100B9566F /* RestaurantService.swift in Sources */,
 				402D9B54257071B400E381EF /* GetRestaurant.swift in Sources */,
 				40CEE01D25240F9200B9566F /* Rating.swift in Sources */,
+				40DEB130258BD76800AA4FC7 /* AddFavorite.swift in Sources */,
 				40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */,
+				40DEB12D258BD70800AA4FC7 /* GetFavoritesPublisher.swift in Sources */,
 				402D9B51257071B400E381EF /* GetRestaurantsPublisher.swift in Sources */,
 				40DA6149255393B40052AD1D /* ScenePresenter.swift in Sources */,
 				40638A732541115900DC55F8 /* RateView.swift in Sources */,
+				40DEB148258BE39300AA4FC7 /* RestaurantItemProviding.swift in Sources */,
 				402D9B5A257071C200E381EF /* RestaurantCache.swift in Sources */,
 				40AD2CDA2586B62B006302BD /* SidebarViewController.swift in Sources */,
 				40638A682541089800DC55F8 /* CategoriesViewModel.swift in Sources */,
 				40CEE01625240F6200B9566F /* Category.swift in Sources */,
+				40DEB139258BDC3C00AA4FC7 /* TabBarController.swift in Sources */,
 				402D9B59257071C200E381EF /* RestaurantAPI.swift in Sources */,
 				40DA6150255393ED0052AD1D /* RestaurantDetailViewModel.swift in Sources */,
 				40DA614D255393E10052AD1D /* RestaurantDetailViewController.swift in Sources */,
@@ -328,6 +383,7 @@
 				40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */,
 				40AD2CD42586B55D006302BD /* ProfileViewController.swift in Sources */,
 				402D9B55257071B400E381EF /* FetchRestaurants.swift in Sources */,
+				40DEB133258BD79900AA4FC7 /* RemoveFavorite.swift in Sources */,
 				40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */,
 				402D9B53257071B400E381EF /* RateRestaurant.swift in Sources */,
 			);
