@@ -22,6 +22,11 @@
 		40AD2CD42586B55D006302BD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD2CD32586B55D006302BD /* ProfileViewController.swift */; };
 		40AD2CDA2586B62B006302BD /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD2CD92586B62B006302BD /* SidebarViewController.swift */; };
 		40AD2CDF2586B7DD006302BD /* TabBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD2CDE2586B7DD006302BD /* TabBarItems.swift */; };
+		40CA1E362593C4AA00B4A61E /* NotificaitonSound.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 40CA1E352593C4AA00B4A61E /* NotificaitonSound.aiff */; };
+		40CA1E392593C4D100B4A61E /* UserNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA1E382593C4D100B4A61E /* UserNotificationService.swift */; };
+		40CA1E3C2593C8A200B4A61E /* NotificationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA1E3B2593C8A200B4A61E /* NotificationPresentation.swift */; };
+		40CA1E3F2593C9D500B4A61E /* ScheduleNotificationForRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA1E3E2593C9D500B4A61E /* ScheduleNotificationForRestaurant.swift */; };
+		40CA1E4C2593D1CD00B4A61E /* GetRestaurantNotificationsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA1E4B2593D1CD00B4A61E /* GetRestaurantNotificationsPublisher.swift */; };
 		40CEE00025240EF700B9566F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEDFFF25240EF700B9566F /* AppDelegate.swift */; };
 		40CEE00225240EF700B9566F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEE00125240EF700B9566F /* SceneDelegate.swift */; };
 		40CEE00725240EF700B9566F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CEE00525240EF700B9566F /* Main.storyboard */; };
@@ -67,6 +72,11 @@
 		40AD2CD92586B62B006302BD /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		40AD2CDE2586B7DD006302BD /* TabBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItems.swift; sourceTree = "<group>"; };
 		40AD2CE22586C03D006302BD /* RestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RestApp.entitlements; sourceTree = "<group>"; };
+		40CA1E352593C4AA00B4A61E /* NotificaitonSound.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = NotificaitonSound.aiff; path = ../../../Sounds/NotificaitonSound.aiff; sourceTree = "<group>"; };
+		40CA1E382593C4D100B4A61E /* UserNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationService.swift; sourceTree = "<group>"; };
+		40CA1E3B2593C8A200B4A61E /* NotificationPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresentation.swift; sourceTree = "<group>"; };
+		40CA1E3E2593C9D500B4A61E /* ScheduleNotificationForRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleNotificationForRestaurant.swift; sourceTree = "<group>"; };
+		40CA1E4B2593D1CD00B4A61E /* GetRestaurantNotificationsPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRestaurantNotificationsPublisher.swift; sourceTree = "<group>"; };
 		40CEDFFC25240EF700B9566F /* RestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEDFFF25240EF700B9566F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40CEE00125240EF700B9566F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +154,17 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		40CA1E342593C48E00B4A61E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				40CA1E352593C4AA00B4A61E /* NotificaitonSound.aiff */,
+				40CEE00825240EF800B9566F /* Assets.xcassets */,
+				40CEE00A25240EF800B9566F /* LaunchScreen.storyboard */,
+				40CEE00D25240EF800B9566F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		40CEDFF325240EF700B9566F = {
 			isa = PBXGroup;
 			children = (
@@ -170,12 +191,10 @@
 				40CEE01F25240FC200B9566F /* Service */,
 				40DA6152255398470052AD1D /* UseCase */,
 				40CEE01425240F5D00B9566F /* Model */,
+				40CA1E342593C48E00B4A61E /* Resources */,
 				40CEDFFF25240EF700B9566F /* AppDelegate.swift */,
 				40CEE00125240EF700B9566F /* SceneDelegate.swift */,
 				40CEE00525240EF700B9566F /* Main.storyboard */,
-				40CEE00825240EF800B9566F /* Assets.xcassets */,
-				40CEE00A25240EF800B9566F /* LaunchScreen.storyboard */,
-				40CEE00D25240EF800B9566F /* Info.plist */,
 			);
 			path = RestApp;
 			sourceTree = "<group>";
@@ -198,6 +217,7 @@
 				402D9B58257071C200E381EF /* RestaurantCache.swift */,
 				40CEE02025240FD100B9566F /* RestaurantService.swift */,
 				40DEB129258BD52D00AA4FC7 /* FavoritesService.swift */,
+				40CA1E382593C4D100B4A61E /* UserNotificationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -231,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				40DA6148255393B40052AD1D /* ScenePresenter.swift */,
+				40CA1E3B2593C8A200B4A61E /* NotificationPresentation.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -257,6 +278,8 @@
 				40DEB12C258BD70800AA4FC7 /* GetFavoritesPublisher.swift */,
 				40DEB12F258BD76800AA4FC7 /* AddFavorite.swift */,
 				40DEB132258BD79900AA4FC7 /* RemoveFavorite.swift */,
+				40CA1E3E2593C9D500B4A61E /* ScheduleNotificationForRestaurant.swift */,
+				40CA1E4B2593D1CD00B4A61E /* GetRestaurantNotificationsPublisher.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -337,6 +360,7 @@
 			files = (
 				40CEE00C25240EF800B9566F /* LaunchScreen.storyboard in Resources */,
 				40CEE00925240EF800B9566F /* Assets.xcassets in Resources */,
+				40CA1E362593C4AA00B4A61E /* NotificaitonSound.aiff in Resources */,
 				40CEE00725240EF700B9566F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +376,8 @@
 				40DEB136258BD7E400AA4FC7 /* SidebarViewModel.swift in Sources */,
 				40CEE01A25240F7800B9566F /* Restaurant.swift in Sources */,
 				403A010A252554D800C836CF /* RestaurantCollectionViewCell.swift in Sources */,
+				40CA1E3F2593C9D500B4A61E /* ScheduleNotificationForRestaurant.swift in Sources */,
+				40CA1E392593C4D100B4A61E /* UserNotificationService.swift in Sources */,
 				40638A7025410DDF00DC55F8 /* RateCollectionViewCell.swift in Sources */,
 				40DEB12A258BD52D00AA4FC7 /* FavoritesService.swift in Sources */,
 				40DEB13C258BDC5100AA4FC7 /* TabBarViewModel.swift in Sources */,
@@ -367,6 +393,7 @@
 				40DEB130258BD76800AA4FC7 /* AddFavorite.swift in Sources */,
 				40CEE02C2524130300B9566F /* CategoriesViewController.swift in Sources */,
 				40DEB12D258BD70800AA4FC7 /* GetFavoritesPublisher.swift in Sources */,
+				40CA1E3C2593C8A200B4A61E /* NotificationPresentation.swift in Sources */,
 				402D9B51257071B400E381EF /* GetRestaurantsPublisher.swift in Sources */,
 				40DA6149255393B40052AD1D /* ScenePresenter.swift in Sources */,
 				40638A732541115900DC55F8 /* RateView.swift in Sources */,
@@ -382,6 +409,7 @@
 				40AD2CDF2586B7DD006302BD /* TabBarItems.swift in Sources */,
 				40E1CDB0256039A400865485 /* ImageCacheService.swift in Sources */,
 				40AD2CD42586B55D006302BD /* ProfileViewController.swift in Sources */,
+				40CA1E4C2593D1CD00B4A61E /* GetRestaurantNotificationsPublisher.swift in Sources */,
 				402D9B55257071B400E381EF /* FetchRestaurants.swift in Sources */,
 				40DEB133258BD79900AA4FC7 /* RemoveFavorite.swift in Sources */,
 				40638A6C25410C3700DC55F8 /* ScoreView.swift in Sources */,
@@ -535,7 +563,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestApp/RestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = RestApp/Info.plist;
+				INFOPLIST_FILE = RestApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,7 +584,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestApp/RestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = RestApp/Info.plist;
+				INFOPLIST_FILE = RestApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

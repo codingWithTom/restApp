@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   struct DeepLinkKeys {
@@ -15,14 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   struct Dependencies {
     var getRestaurant: GetRestaurant = GetRestaurantAdapter()
+    var restaurantNotifications: GetRestaurantNotificationsPublisher = GetRestaurantNotificationsPublisherAdapter()
   }
   
   private var dependencies = Dependencies()
+  private var notificationsSubscriber: AnyCancellable?
   
   var window: UIWindow?
   
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    subscribe()
     if let context = connectionOptions.urlContexts.first {
       handleURLContext(context)
     }
@@ -58,6 +62,12 @@ extension SceneDelegate: UISplitViewControllerDelegate {
 }
 
 private extension SceneDelegate {
+  func subscribe() {
+    notificationsSubscriber = dependencies.restaurantNotifications.execute().receive(on: RunLoop.main).sink { [weak self] in
+      self?.presentRestaurant(with: $0)
+    }
+  }
+  
   func handleURLContext(_ context: UIOpenURLContext) {
       // cwt://restApp/restaurant?restaurantID=M3
     let url = context.url
@@ -69,11 +79,9 @@ private extension SceneDelegate {
   func openRestaurant(for url: URL) {
     let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true)
     guard
-      let restaurantID = components?.queryItems?.first(where: { $0.name == DeepLinkKeys.restaurantQueryItem })?.value,
-      let restaurant = dependencies.getRestaurant.execute(restaurantID: restaurantID),
-      let restaurantVC = RestaurantDetailViewController.getController(for: restaurant)
+      let restaurantID = components?.queryItems?.first(where: { $0.name == DeepLinkKeys.restaurantQueryItem })?.value
     else { return }
-    window?.rootViewController?.show(restaurantVC, sender: self)
+    presentRestaurant(with: restaurantID)
   }
   
   func makeSplitViewController() -> UIViewController? {
@@ -83,6 +91,14 @@ private extension SceneDelegate {
     splitViewController.setViewController(SidebarViewController(), for: .primary)
     splitViewController.setViewController(UINavigationController(rootViewController: categoriesController), for: .supplementary)
     return splitViewController
+  }
+  
+  func presentRestaurant(with restaurantID: String) {
+  guard
+    let restaurant = dependencies.getRestaurant.execute(restaurantID: restaurantID),
+    let restaurantVC = RestaurantDetailViewController.getController(for: restaurant)
+  else { return }
+    window?.rootViewController?.show(UINavigationController(rootViewController: restaurantVC), sender: self)
   }
 }
 

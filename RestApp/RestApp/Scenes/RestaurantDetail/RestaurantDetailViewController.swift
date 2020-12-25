@@ -8,7 +8,9 @@
 import UIKit
 
 class RestaurantDetailViewController: UIViewController {
-  
+  struct Dependencies {
+    var notificationPresentation: NotificationPresentation = NotificationPresentationAdapter()
+  }
   @IBOutlet private weak var restaurantImageView: UIImageView!
   @IBOutlet private weak var restaurantDescriptionLabel: UILabel!
   @IBOutlet private weak var restaurantCollectionView: UICollectionView!
@@ -22,6 +24,7 @@ class RestaurantDetailViewController: UIViewController {
       imagesCollectionView.isHidden = isShowingRatings
     }
   }
+  var dependencies = Dependencies()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,6 +51,15 @@ class RestaurantDetailViewController: UIViewController {
   
   @IBAction private func didSelectSegment(_ sender: UISegmentedControl) {
     isShowingRatings = sender.selectedSegmentIndex == 0
+  }
+  
+  @IBAction private func didSelectSchedule(_ sender: Any?) {
+    viewModel?.userDidTapSchedule { [weak self] isNotificationAllowed in
+      if !isNotificationAllowed {
+        guard let self = self else { return }
+        self.dependencies.notificationPresentation.promptUserForNotificationSettings(from: self)
+      }
+    }
   }
 }
 
