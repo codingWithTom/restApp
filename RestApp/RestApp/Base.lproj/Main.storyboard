@@ -98,6 +98,16 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uw9-4Q-9Dr">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem image="clock.fill" catalog="system" id="yeE-0C-e0N">
+                                        <connections>
+                                            <action selector="didSelectSchedule:" destination="d6V-p2-Zoi" id="uD3-Jl-oNT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gxZ-Oo-aSW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -110,6 +120,8 @@
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="Ecj-Cm-a7c" secondAttribute="trailing" constant="8" id="DSr-tA-mYq"/>
                             <constraint firstItem="JJV-aY-Aqs" firstAttribute="leading" secondItem="gxZ-Oo-aSW" secondAttribute="leading" constant="8" id="HVw-0V-YUd"/>
                             <constraint firstItem="Ecj-Cm-a7c" firstAttribute="top" secondItem="V8p-AF-hZL" secondAttribute="bottom" constant="8" id="J4j-FM-QSy"/>
+                            <constraint firstItem="gxZ-Oo-aSW" firstAttribute="bottom" secondItem="Uw9-4Q-9Dr" secondAttribute="bottom" id="Kx6-Xx-w3R"/>
+                            <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="Uw9-4Q-9Dr" secondAttribute="trailing" id="Ln7-3q-2L1"/>
                             <constraint firstItem="IbM-Ja-gR7" firstAttribute="leading" secondItem="Ecj-Cm-a7c" secondAttribute="leading" id="W6P-G4-ywZ"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="JJV-aY-Aqs" secondAttribute="trailing" constant="8" id="Xqw-0T-wVB"/>
                             <constraint firstItem="IbM-Ja-gR7" firstAttribute="bottom" secondItem="Ecj-Cm-a7c" secondAttribute="bottom" id="ZCj-tN-HsR"/>
@@ -118,6 +130,7 @@
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="bottom" secondItem="Ecj-Cm-a7c" secondAttribute="bottom" constant="8" id="o0N-10-fMU"/>
                             <constraint firstItem="gxZ-Oo-aSW" firstAttribute="trailing" secondItem="1zN-r2-0IT" secondAttribute="trailing" constant="8" id="pcF-wR-b28"/>
                             <constraint firstItem="Ecj-Cm-a7c" firstAttribute="leading" secondItem="gxZ-Oo-aSW" secondAttribute="leading" constant="8" id="pzK-aj-Cou"/>
+                            <constraint firstItem="Uw9-4Q-9Dr" firstAttribute="leading" secondItem="1rS-ia-Nbg" secondAttribute="leading" id="ra7-JH-NFU"/>
                         </constraints>
                     </view>
                     <connections>
@@ -246,6 +259,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
         <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>

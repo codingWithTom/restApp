@@ -11,6 +11,7 @@ final class RestaurantDetailViewModel {
   struct Dependencies {
     var getShareableInfo: GetShareableInfo = GetShareableInfoAdapter()
     var imageCacheService: ImageCacheService = ImageCacheServiceAdapter.shared
+    var scheduleNotification: ScheduleNotificationForRestaurant = ScheduleNotificationForRestaurantAdapter()
   }
   private let dependencies: Dependencies
   private let restaurant: Restaurant
@@ -37,6 +38,10 @@ final class RestaurantDetailViewModel {
   
   func getShareableItems() -> [Any] {
     return dependencies.getShareableInfo.execute(for: restaurant)
+  }
+  
+  func userDidTapSchedule(completion: @escaping (Bool) -> Void) {
+    dependencies.scheduleNotification.execute(restaurant, completion: completion)
   }
 }
 
